@@ -9,26 +9,31 @@ namespace park_demo
     class ParkImpl
     {
     public:
-        ParkImpl(int cap)
+        ParkImpl(Park* o, int cap)
         {
             capacity = cap;
+            owner = o;
         }
+
         ~ParkImpl()
         {
-
+            owner = 0;
         }
 
         Ticket* park_car(Car* car)
         {
             Ticket* ticket = new Ticket();
             map_tic_car[ticket] = car;
+            car->park_to(owner);
             return ticket;
         }
 
         // ticket should be released outside
         Car* pick_car(Ticket*& ticket)
         {
-            return map_tic_car[ticket];
+            Car* car = map_tic_car[ticket];
+            car->move_out();
+            return car;
         }
 
         int get_free_count()
@@ -38,6 +43,7 @@ namespace park_demo
 
     private:
 
+        Park* owner;
         int capacity;
         std::map<Ticket*, Car*> map_tic_car;
 
@@ -45,7 +51,7 @@ namespace park_demo
 
     Park::Park(int capacity)
     {
-        impl = new ParkImpl(capacity);
+        impl = new ParkImpl(this, capacity);
     }
 
     Park::~Park()

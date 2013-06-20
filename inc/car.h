@@ -9,6 +9,9 @@ namespace park_demo {
         Car();
         ~Car();
 
+        void park_to(Park* p);
+        void move_out();
+
         bool is_parked();
 
     private:

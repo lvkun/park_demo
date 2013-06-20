@@ -18,4 +18,14 @@ namespace park_demo
         return park != 0;
     }
 
+    void Car::park_to(Park* p)
+    {
+        park = p;
+    }
+
+    void Car::move_out()
+    {
+        park = 0;
+    }
+
 }
