@@ -18,6 +18,7 @@ GTEST_DIR = ./gtest-1.6.0
 
 # Where to find user code.
 SOURCE_DIR = ../src
+TEST_DIR = .
 
 INC_DIR = ../inc
 
@@ -81,9 +82,9 @@ ticket.o : $(SOURCE_DIR)/ticket.cc $(INC_DIR)/ticket.h $(GTEST_HEADERS)
 park.o : $(SOURCE_DIR)/park.cc $(INC_DIR)/park.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SOURCE_DIR)/park.cc
 
-park_test.o : $(SOURCE_DIR)/park_test.cc \
+park_test.o : $(TEST_DIR)/park_test.cc \
                      $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SOURCE_DIR)/park_test.cc
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(TEST_DIR)/park_test.cc
 
 park_test : park_test.o car.o ticket.o park.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -lpthread -o $@
