@@ -3,9 +3,16 @@
 
 namespace park_demo {
 
+    class Park;
     class Car {
     public:
         Car();
+        ~Car();
+
+        bool is_parked();
+
+    private:
+        Park* park;
     };
 
 }
