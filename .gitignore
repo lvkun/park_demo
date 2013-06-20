@@ -1,0 +1,4 @@
+*.o
+*.a
+park_test
+test/gtest-1.6.0
