@@ -54,3 +54,16 @@ TEST(PARK, park_car_is_not_changed_after_park_pick)
     delete ticket;
     delete car;
 }
+
+TEST(PARK, park_free_count_is_not_changed_after_park_pick)
+{
+    Park p(10);
+    Car* car = new Car();
+    Ticket* ticket = p.park_car(car);
+    Car* picked_car = p.pick_car(ticket);
+    (void)picked_car;
+    EXPECT_EQ(p.get_free_count(), 10);
+
+    delete ticket;
+    delete car;
+}

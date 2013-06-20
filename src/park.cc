@@ -32,6 +32,7 @@ namespace park_demo
         Car* pick_car(Ticket*& ticket)
         {
             Car* car = map_tic_car[ticket];
+            map_tic_car.erase(ticket);
             car->move_out();
             return car;
         }
