@@ -14,16 +14,12 @@
 
 # Points to the root of Google Test, relative to where this file is.
 # Remember to tweak this if you move this file.
-GTEST_DIR = gtest-1.6.0
+GTEST_DIR = ./gtest-1.6.0
 
 # Where to find user code.
 SOURCE_DIR = ../src
 
 INC_DIR = ../inc
-
-# Flags passed to the preprocessor.
-CPPFLAGS += -I$(GTEST_DIR)/include
-CPPFLAGS += -I$(INC_DIR)
 
 # Flags passed to the C++ compiler.
 CXXFLAGS += -g -Wall -Wextra
@@ -36,6 +32,10 @@ TESTS = park_test
 # definition.
 GTEST_HEADERS = $(GTEST_DIR)/include/gtest/*.h \
                 $(GTEST_DIR)/include/gtest/internal/*.h
+
+# Flags passed to the preprocessor.
+CPPFLAGS += -I$(GTEST_DIR)/include
+CPPFLAGS += -I$(INC_DIR)
 
 # House-keeping build targets.
 
@@ -81,9 +81,9 @@ ticket.o : $(SOURCE_DIR)/ticket.cc $(INC_DIR)/ticket.h $(GTEST_HEADERS)
 park.o : $(SOURCE_DIR)/park.cc $(INC_DIR)/park.h $(GTEST_HEADERS)
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SOURCE_DIR)/park.cc
 
-sample1_unittest.o : $(SOURCE_DIR)/sample1_unittest.cc \
-                     $(INC_DIR)/sample1.h $(GTEST_HEADERS)
-	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SOURCE_DIR)/sample1_unittest.cc
+park_test.o : $(SOURCE_DIR)/park_test.cc \
+                     $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(SOURCE_DIR)/park_test.cc
 
-park_test : car.o ticket.o park.o gtest_main.a
+park_test : park_test.o car.o ticket.o park.o gtest_main.a
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) $^ -lpthread -o $@

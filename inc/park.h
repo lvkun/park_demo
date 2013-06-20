@@ -12,8 +12,10 @@ namespace park_demo
         Park(int capacity);
         ~Park();
 
-        Ticket* park_car(const Car& car);
-        Car* pick_car(const Ticket& ticket);
+        int get_free_count();
+
+        Ticket* park_car(Car* car);
+        Car* pick_car(Ticket* ticket);
 
     private:
         ParkImpl* impl;
