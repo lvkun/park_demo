@@ -1,6 +1,7 @@
 #include "park.h"
 #include "car.h"
 #include "ticket.h"
+#include <map>
 
 namespace park_demo
 {
@@ -19,22 +20,26 @@ namespace park_demo
 
         Ticket* park_car(Car* car)
         {
-            return 0;
+            Ticket* ticket = new Ticket();
+            map_tic_car[ticket] = car;
+            return ticket;
         }
 
-        Car* pick_car(Ticket* ticket)
+        // ticket should be released outside
+        Car* pick_car(Ticket*& ticket)
         {
-            return 0;
+            return map_tic_car[ticket];
         }
 
         int get_free_count()
         {
-            return capacity;
+            return capacity - map_tic_car.size();
         }
 
     private:
 
         int capacity;
+        std::map<Ticket*, Car*> map_tic_car;
 
     };
 

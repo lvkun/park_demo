@@ -3,9 +3,14 @@
 
 namespace park_demo
 {
+    class Park;
     class Ticket {
     public:
         Ticket();
+        ~Ticket();
+    private:
+        Park* park;
+
     };
 }
 
