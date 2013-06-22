@@ -29,7 +29,11 @@ namespace park_demo
 
         Ticket* park_car(Car* car)
         {
-            Ticket* ticket = new Ticket();
+            if (get_free_count() == 0) {
+                throw std::runtime_error("no available space");
+            }
+
+            Ticket* ticket = new Ticket(owner);
             map_tic_car[ticket] = car;
             car->park_to(owner);
             return ticket;

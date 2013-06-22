@@ -3,9 +3,9 @@
 
 namespace park_demo
 {
-    Ticket::Ticket()
+    Ticket::Ticket(Park* p)
     {
-        park = 0;
+        park = p;
     }
 
     Ticket::~Ticket()

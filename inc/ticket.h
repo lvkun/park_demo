@@ -6,7 +6,7 @@ namespace park_demo
     class Park;
     class Ticket {
     public:
-        Ticket();
+        Ticket(Park* p);
         ~Ticket();
     private:
         Park* park;
