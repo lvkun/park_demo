@@ -1,7 +1,9 @@
 #include "park.h"
 #include "car.h"
 #include "ticket.h"
+
 #include <map>
+#include <stdexcept>
 
 namespace park_demo
 {
@@ -11,6 +13,11 @@ namespace park_demo
     public:
         ParkImpl(Park* o, int cap)
         {
+            if (cap <= 0) {
+                throw
+                std::invalid_argument("capacity should be greater than 0");
+            }
+
             capacity = cap;
             owner = o;
         }
@@ -28,7 +35,6 @@ namespace park_demo
             return ticket;
         }
 
-        // ticket should be released outside
         Car* pick_car(Ticket*& ticket)
         {
             Car* car = map_tic_car[ticket];

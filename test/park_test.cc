@@ -4,6 +4,7 @@
 #include "car.h"
 #include "ticket.h"
 
+#include <stdexcept>
 using namespace park_demo;
 
 TEST(CAR, car_is_not_parked_when_create)
@@ -66,4 +67,9 @@ TEST(PARK, park_free_count_is_not_changed_after_park_pick)
 
     delete ticket;
     delete car;
+}
+
+TEST(PARK, park_create_throw_exception_when_capacity_is_not_valid)
+{
+    EXPECT_THROW(Park(0), std::invalid_argument);
 }

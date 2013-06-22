@@ -14,6 +14,7 @@ namespace park_demo
 
         int get_free_count();
 
+        // Note: ticket should be released outside
         Ticket* park_car(Car* car);
         Car* pick_car(Ticket* ticket);
 
