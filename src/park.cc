@@ -39,8 +39,14 @@ namespace park_demo
             return ticket;
         }
 
-        Car* pick_car(Ticket*& ticket)
+        Car* pick_car(Ticket* ticket)
         {
+            std::map<Ticket*, Car*>::iterator it = map_tic_car.find(ticket);
+            if (it == map_tic_car.end()) {
+                throw
+                std::invalid_argument("this ticket is not valid in this park");
+            }
+
             Car* car = map_tic_car[ticket];
             map_tic_car.erase(ticket);
             car->move_out();

@@ -118,3 +118,12 @@ TEST(PARK, park_throw_exception_when_park_car_exceed_capacity)
     delete ticket_three;
 }
 
+TEST(PARK, park_throw_exception_when_using_ticket_not_from_this_park)
+{
+    Park park_one(3);
+    Car car;
+    Ticket* ticket = park_one.park_car(&car);
+
+    Park park_two(3);
+    EXPECT_THROW(park_two.pick_car(ticket), std::invalid_argument);
+}
