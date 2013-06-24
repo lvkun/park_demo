@@ -127,3 +127,18 @@ TEST(PARK, park_throw_exception_when_using_ticket_not_from_this_park)
     Park park_two(3);
     EXPECT_THROW(park_two.pick_car(ticket), std::invalid_argument);
 }
+
+TEST(FIND_PARK, find_park_should_return_park_with_most_free_space)
+{
+    Park park_twenty_port(10);
+    Park park_fifty_port(50);
+    Park park_eighty_port(80);
+
+    std::vector<Park*> vPark;
+    vPark.push_back(&park_twenty_port);
+    vPark.push_back(&park_fifty_port);
+    vPark.push_back(&park_eighty_port);
+    find_park(vPark.begin(), vPark.end());
+    EXPECT_EQ((*(find_park(vPark.begin(), vPark.end())))->get_free_count(),
+         80);
+}

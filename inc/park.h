@@ -1,6 +1,8 @@
 #ifndef PARK_DEMO_PARK
 #define PARK_DEMO_PARK
 
+#include <algorithm>
+
 namespace park_demo
 {
     class Car;
@@ -21,6 +23,14 @@ namespace park_demo
     private:
         ParkImpl* impl;
     };
+
+    bool park_cmp(Park* p1, Park* p2);
+
+    template<class T>
+    T find_park(T begin, T end)
+    {
+        return std::max_element(begin, end, park_cmp);
+    }
 }
 
 #endif

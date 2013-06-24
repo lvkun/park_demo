@@ -90,4 +90,10 @@ namespace park_demo
     {
         return impl->get_free_count();
     }
+
+    bool park_cmp(Park* p1, Park* p2)
+    {
+        return p1->get_free_count() < p2->get_free_count();
+    }
+
 }
